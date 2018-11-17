@@ -6,7 +6,7 @@ ssh -i Downloads/file.pem ubuntu@public_dns_address
 sudo apt-get update && sudo apt-get dist-upgrade -y
 
 # Copy public key on to the DataCenter main server
-scp -i multi.pem multi.pem ubuntu@public_dns:~/.ssh
+scp -i key.pem multi.pem ubuntu@public_dns:~/.ssh
 
 # Create a Hadoop user for accessing HDFS
 sudo addgroup hadoop
@@ -18,9 +18,9 @@ sudo su hduser
 ssh-keygen
 cat id_rsa.pub >> authorized_keys
 
-# Copy the instance public key (multi.pem) to hduser's directory
+# Copy the instance public key (key.pem) to hduser's directory
 sudo su
-cp /home/ubuntu/.ssh/multi.pem /home/hduser/.ssh/
+cp /home/ubuntu/.ssh/key.pem /home/hduser/.ssh/
 chown hduser:hadoop /home/hduser/.ssh/multi.pem
 exit
 
